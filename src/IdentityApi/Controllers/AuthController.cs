@@ -41,8 +41,7 @@ public class AuthController : ControllerBase
 		if (!sessionResult.Succeeded)
 			return BadRequest(new FailResponse { Errors = sessionResult.Errors });
 		
-		// _emailService.Send(emailRegistration.Email, sessionResult.VerificationCode); // TODO return errors if any
-		Console.WriteLine(sessionResult.VerificationCode);
+		_emailService.Send(emailRegistration.Email, sessionResult.VerificationCode); // TODO return errors if any
 		
 		Response.Cookies.Append(
 			"session_id",
